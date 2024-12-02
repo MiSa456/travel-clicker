@@ -210,18 +210,18 @@ a.active .menu_badge {
   font-weight: bold;                   /* teksti lihavoitu */
 }
 
-/* -- Lemon-komponentti ----------------------------------------------- */
+/* -- Suitcase-komponentti ----------------------------------------------- */
 
-.lemon {
+.suitcase {
   width: 60%;                          /* kuvan leveys 60% alueen leveydestä */
   margin: 0 auto;                      /* keskitetään kuva */
 }
 
-.lemon img {
+.suitcase img {
   width: 100%;                         /* skaalataan kuva täyttämään kuvalle varattu alue */
 }
 
-.lemon img:active {
+.suitcase img:active {
   -webkit-animation: beat 0.1s ease-in-out backwards;       /* kuvan animaation */
           animation: beat 0.1s ease-in-out backwards;       /* kuvan animaation */
 }

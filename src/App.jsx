@@ -1,11 +1,12 @@
 import './App.css'
+import Suitcase from './components/Suitcase';
 
 function App() {
 
   return (
     <>
       <div>
-        TODO Lemon Clicker
+        <Suitcase />
       </div>  
     </>
   )
