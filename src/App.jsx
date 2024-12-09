@@ -4,6 +4,7 @@ import Suitcase from './components/Suitcase';
 import Balance from './components/Balance';
 import Booster from './components/Booster';
 import Header from './components/Header';
+import Menu from './components/Menu';
 
 function App() {
 
@@ -16,14 +17,17 @@ function App() {
   }
 
   return (
-    <>
-      <div>
-        <Header>Travel clicker</Header> 
-        <Balance total={clicks} />
-        <Suitcase onClick={handleClick} />
-        <Booster value="3.2" />
-      </div>  
-    </>
+    <div className="root">
+      <div className="root_content">
+        <div className="container clicker">
+          <Header>Travel clicker</Header>
+          <Balance total={clicks} />
+          <Suitcase onClick={handleClick} />
+          <Booster value="3.2" />
+        </div>
+      </div>
+      <Menu items={2} />
+    </div>  
   )
 
 }
