@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import './App.css'
-import Suitcase from './components/Suitcase';
-import Balance from './components/Balance';
-import Booster from './components/Booster';
-import Header from './components/Header';
 import Menu from './components/Menu';
+import Clicker from './pages/Clicker';
 
 function App() {
 
@@ -23,15 +20,10 @@ function App() {
   return (
     <div className="root">
       <div className="root_content">
-        <div className="container clicker">
-          <Header>Travel clicker</Header>
-          <Balance total={stats.clicks} />
-          <Suitcase onClick={handleClick} />
-          <Booster value={stats.increase} />
-        </div>
+        <Clicker stats={stats} handleClick={handleClick} />
       </div>
       <Menu items={stats.itemstobuy} />
-    </div>  
+    </div>
   )
 
 }
