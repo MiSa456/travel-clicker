@@ -1,3 +1,5 @@
+import shortenNumber from '../utils/shortenNumber';
+
 function Balance(props) {
 
     // Poimitaan komponentille välitetty total-arvo
@@ -6,7 +8,7 @@ function Balance(props) {
     return (
       <div className="balance">
         <div>suitcase</div>
-        <div className="balance_total">{total}</div>
+        <div className="balance_total">{shortenNumber(total)}</div>
       </div>
     );
   
