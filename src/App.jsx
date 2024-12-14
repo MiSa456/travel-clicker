@@ -4,21 +4,10 @@ import AppRouter from './components/AppRouter';
 import items from './config/items.js';
 import round from './utils/round';
 import getPurchasableItems from './utils/getPurchasableItems';
+import useLocalStorage from './utils/useLocalStorage';
 
 function App() {
 
-  // Laskee niiden tuotteiden lukumäärän, joiden ostamiseen on varaa.
-  const countBuyableItems = (items, balance) => {
-    let total = 0;
-    getPurchasableItems(items).forEach(item => {
-      if (item.price <= balance) total++;
-    });
-    return total;
-  }
-
-  // Luodaan tilamuuttuja, johon tallennetaan tuotelista.
-  const [storeitems,setStoreitems] = useState(items);
- 
   // Esitellään pelin laskennalliset alkuarvot.
   const initialstats = {
     clicks: 0,
@@ -30,8 +19,20 @@ function App() {
     countriesVisited: 0
   };
 
-  // Luodaan tilamuuttuja, johon tallennetaan pelin laskennalliset tiedot.
-  const [stats, setStats] = useState(initialstats);
+  // Laskee niiden tuotteiden lukumäärän, joiden ostamiseen on varaa.
+  const countBuyableItems = (items, balance) => {
+    let total = 0;
+    getPurchasableItems(items).forEach(item => {
+      if (item.price <= balance) total++;
+    });
+    return total;
+  }
+
+  // Luodaan taltio, johon tallennetaan pelin laskennalliset tiedot.
+  const [stats, setStats, resetStats] = useLocalStorage('travel-stats',initialstats);
+
+  // Luodaan taltio, johon tallennetaan tuotelista.
+  const [storeitems,setStoreitems, resetStoreitems] = useLocalStorage('travel-items',items);
 
 
   const handleClick = () => {
@@ -88,10 +89,9 @@ function App() {
   };
 
   const handleReset = () => {
-    // Päivitetään tilamuuttujat alkuarvoihin.
-    setStats(initialstats);
-    console.log(items);
-    setStoreitems(items);
+    // Palautetaan taltiot alkuarvoihin.
+    resetStats();
+    resetStoreitems();
   }
 
   return (
