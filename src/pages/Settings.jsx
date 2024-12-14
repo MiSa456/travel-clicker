@@ -1,5 +1,6 @@
 import Header from '../components/Header';
 import Stat from '../components/Stat';
+import Reset from '../components/Reset';
 
 function Settings(props) {
   return (
@@ -17,7 +18,8 @@ function Settings(props) {
             <Stat title="countries visited" value={props.stats.countriesVisited} />
           </div>
         </div>
-        TODO reset
+        <Reset resetvalue={props.stats.clicks}
+               handleReset={props.handleReset} />
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ function App() {
     let newstats = {...stats}
     // Kasvatetaan napautusten lukumäärää yhdellä.
     newstats.clicks = newstats.clicks + 1;
-      // Kasvataan matkalaukkujen määrää kasvatusarvolla.
+      // Kasvataan matkapisteiden määrää kasvatusarvolla.
       newstats.balance = round(newstats.balance + newstats.increase, 1);
       // Lasketaan ostettavissa olevien tuotteiden lukumäärä.
       newstats.itemstobuy = countBuyableItems(storeitems,newstats.balance);
@@ -52,7 +52,8 @@ function App() {
   const handlePurchase = (id) => {
     const index = storeitems.findIndex(storeitem => storeitem.id === id);
     if (stats.balance >= storeitems[index].price) {
-      let newstoreitems = [...storeitems];
+      // Tehdään kopiot tilamuuttujista.
+      let newstoreitems = JSON.parse(JSON.stringify(storeitems));
       let newstats = { ...stats };
   
       // Kasvatetaan tuotteiden määrää
@@ -67,12 +68,12 @@ function App() {
       let increase = 1;
       let upgrades = 0;
   
-      for (let i = 0; i < storeitems.length; i++) {
-        upgrades += storeitems[i].qty;
-        increase += storeitems[i].multiplier * storeitems[i].qty;
+      for (let i = 0; i < newstoreitems.length; i++) {
+        upgrades += newstoreitems[i].qty;
+        increase += newstoreitems[i].multiplier * newstoreitems[i].qty;
   
         // Tarkistetaan, onko ostettu tuote matkakohde (index >= 4)
-        if (i >= 4 && storeitems[i].qty === 1) {
+        if (i >= 4 && newstoreitems[i].qty === 1) {
           newstats.countriesVisited++; // Lisätään vieraillut maa
         }
       }
@@ -84,13 +85,22 @@ function App() {
       setStoreitems(newstoreitems);
       setStats(newstats);
     }
-  };  
+  };
+
+  const handleReset = () => {
+    // Päivitetään tilamuuttujat alkuarvoihin.
+    setStats(initialstats);
+    console.log(items);
+    setStoreitems(items);
+  }
 
   return (
-    <AppRouter stats={stats} 
-               storeitems={storeitems} 
-               handleClick={handleClick} 
-               handlePurchase={handlePurchase} />
+    <AppRouter stats={stats}
+               storeitems={storeitems}
+               handleClick={handleClick}
+               handlePurchase={handlePurchase}
+               handleReset={handleReset} />
+
   )
 
 }
