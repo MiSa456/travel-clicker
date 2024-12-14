@@ -26,8 +26,9 @@ function App() {
     increase: 1,
     itemstobuy: 0,
     upgrades: 0,
-    collected: 0
-  }
+    collected: 0,
+    countriesVisited: 0
+  };
 
   // Luodaan tilamuuttuja, johon tallennetaan pelin laskennalliset tiedot.
   const [stats, setStats] = useState(initialstats);
@@ -49,40 +50,41 @@ function App() {
   }
 
   const handlePurchase = (id) => {
-    // Etsitään tunnistetta vastaavan tuotteen indeksi taulukosta.
-    const index = storeitems.findIndex(storeitem => storeitem.id == id);
-    // Varmistetaan, että käyttäjällä on varaa ostaa tuote.
+    const index = storeitems.findIndex(storeitem => storeitem.id === id);
     if (stats.balance >= storeitems[index].price) {
-      // Tehdään kopiot tilamuuttujista.
       let newstoreitems = [...storeitems];
-      let newstats = {...stats};
-      // Kasvatetaan tuotteiden määrää yhdellä.
+      let newstats = { ...stats };
+  
+      // Kasvatetaan tuotteiden määrää
       newstoreitems[index].qty++;
-      // Vähännetään varoista tuotteen hinta.
+      // Päivitetään pelaajan saldo
       newstats.balance = round(newstats.balance - newstoreitems[index].price, 1);
-      // Lasketaan tuotteen uusi hinta.
+      // Päivitetään tuotteen uusi hinta
       newstoreitems[index].price =
-        Math.floor(newstoreitems[index].baseprice * Math.pow(1.15,newstoreitems[index].qty));
-      // Koostemuuttujien esittely.
+        Math.floor(newstoreitems[index].baseprice * Math.pow(1.15, newstoreitems[index].qty));
+  
+      // Päivitetään kasvatusarvo ja päivitysten määrä
       let increase = 1;
       let upgrades = 0;
-      // Käydään tuotteet yksitellen lävitse.
-      for (let i=0; i<storeitems.length; i++) {
-        // Lisätään tuotteiden määrä kokonaismäärään.
-        upgrades = upgrades + storeitems[i].qty;
-        // Lisätään tuotteen vaikutus kasvatusarvoon.
-        increase = increase + storeitems[i].multiplier*storeitems[i].qty;
+  
+      for (let i = 0; i < storeitems.length; i++) {
+        upgrades += storeitems[i].qty;
+        increase += storeitems[i].multiplier * storeitems[i].qty;
+  
+        // Tarkistetaan, onko ostettu tuote matkakohde (index >= 4)
+        if (i >= 4 && storeitems[i].qty === 1) {
+          newstats.countriesVisited++; // Lisätään vieraillut maa
+        }
       }
-      // Tallennetaan lasketut koostearvot.
+  
+      // Päivitetään stats-tilamuuttuja
       newstats.increase = increase;
       newstats.upgrades = upgrades;
-      // Lasketaan ostettavissa olevien tuotteiden lukumäärä.
-      newstats.itemstobuy = countBuyableItems(newstoreitems,newstats.balance); 
-      // Tallennetaan uudet tilamuuttujien arviot.
+      newstats.itemstobuy = countBuyableItems(newstoreitems, newstats.balance);
       setStoreitems(newstoreitems);
       setStats(newstats);
     }
-  }
+  };  
 
   return (
     <AppRouter stats={stats} 

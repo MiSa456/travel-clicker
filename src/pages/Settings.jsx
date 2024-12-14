@@ -14,7 +14,7 @@ function Settings(props) {
             <Stat title="collected" value={props.stats.collected} />
             <Stat title="clicks" value={props.stats.clicks} />
             <Stat title="upgrades" value={props.stats.upgrades} />
-            <Stat title="countries visited" value={props.stats.upgrades} />
+            <Stat title="countries visited" value={props.stats.countriesVisited} />
           </div>
         </div>
         TODO reset
