@@ -7,7 +7,7 @@ function Balance(props) {
   
     return (
       <div className="balance">
-        <div>suitcase</div>
+        <div>travel points</div>
         <div className="balance_total">{shortenNumber(total)}</div>
       </div>
     );
