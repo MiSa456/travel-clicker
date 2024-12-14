@@ -3,8 +3,18 @@ import './App.css'
 import AppRouter from './components/AppRouter';
 import items from './config/items.js';
 import round from './utils/round';
+import getPurchasableItems from './utils/getPurchasableItems';
 
 function App() {
+
+  // Laskee niiden tuotteiden lukumäärän, joiden ostamiseen on varaa.
+  const countBuyableItems = (items, balance) => {
+    let total = 0;
+    getPurchasableItems(items).forEach(item => {
+      if (item.price <= balance) total++;
+    });
+    return total;
+  }
 
   // Luodaan tilamuuttuja, johon tallennetaan tuotelista.
   const [storeitems,setStoreitems] = useState(items);
@@ -19,7 +29,9 @@ function App() {
     newstats.clicks = newstats.clicks + 1;
       // Kasvataan matkalaukkujen määrää kasvatusarvolla.
       newstats.balance = round(newstats.balance + newstats.increase, 1);
-    // Tallennetaan päivitetty stats-muuttuja.
+      // Lasketaan ostettavissa olevien tuotteiden lukumäärä.
+      newstats.itemstobuy = countBuyableItems(storeitems,newstats.balance);
+      // Tallennetaan päivitetty stats-muuttuja.
     setStats(newstats); 
   }
 
@@ -51,6 +63,8 @@ function App() {
       // Tallennetaan lasketut koostearvot.
       newstats.increase = increase;
       newstats.upgrades = upgrades;
+      // Lasketaan ostettavissa olevien tuotteiden lukumäärä.
+      newstats.itemstobuy = countBuyableItems(newstoreitems,newstats.balance); 
       // Tallennetaan uudet tilamuuttujien arviot.
       setStoreitems(newstoreitems);
       setStats(newstats);
