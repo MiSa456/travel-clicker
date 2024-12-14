@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Roboto+Condensed:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Limelight&family=Notable&display=swap');
 
 /* -- Värimäärittelyt ------------------------------------------------- */
 
 :root {
-  --primary: #FFB600;
-  --secondary: #E84855;
+  --primary: #300b0b94;
+  --secondary: #300b0b94;
   --neutral-lightest: #FFFFFF;
   --neutral-light: #F3F3F3;
-  --neutral: #EBEBEB;
+  --neutral: #ddcdcdc2;
   --neutral-dark: #999999;
   --neutral-darker: #666666;
   --neutral-darkest: #000000;
@@ -24,13 +24,16 @@
 body {
   background-color: var(--neutral);             /* sovelluksen taustaväri */
   color: var(--neutral-darker);                   /* sovelluksen tekstiväri */
-  font-family: 'Roboto Condensed', sans-serif;  /* sovelluksen fontti */
+  font-family: 'Lato', sans-serif;  /* sovelluksen fontti */
   font-size: 1.25em;                            /* sovelluksen tekstin koko */
 }
 
 h1 {
-  font-family: 'Boogaloo', cursive;             /* otsikon fontti */
-  font-weight: normal;                          /* otsikon paksuus */
+  .lato-regular-italic {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }    
 }
 
 /* -- Responsiivinen ulkoasu ------------------------------------------ 
@@ -200,14 +203,33 @@ a.active .menu_badge {
 
 .balance {
   font-size: 1.5em;                    /* tekstin koko */ 
-  text-align: right;                   /* asemoidaan oikeaan reunaan */
+  display: flex;                       /* käytetään flexboxia */
+  flex-direction: column;              /* asetetaan elementit pystysuuntaan */
+}
+
+.balance_instruction {
+  font-size: 0.8em;                    /* Fonttikoko */
+  color: var(--primary);               /* Väriksi valittu pääväri */
+  text-align: center;                    /* Teksti vasempaan reunaan */
+  margin-bottom: 25px;                 /* Lisää tilaa alapuolelle */
+}
+
+.balance_details {
+  display: flex;                       /* käytetään flexboxia */
+  justify-content: flex-end;           /* asetetaan kaikki oikeaan reunaan */
+  align-items: baseline;               /* tasataan kaikki samalla tasolla */
+}
+
+.balance_label {
+  text-align: right;                   /* Teksti oikeaan reunaan */
+  margin-right: 10px;                   /* Lisätään pieni tila labelin ja arvon väliin */
 }
 
 .balance_total {
-  font-size: 2.2em;                    /* luvun tekstikoko */
-  color: var(--primary);               /* luvun värinä tehoste*/
-  margin-top: -0.15em;                 /* viedään lukua lähemmäs selitetekstiä */
-  font-weight: bold;                   /* teksti lihavoitu */
+  font-size: 2.2em;                    /* Luvun tekstikoko */
+  color: var(--primary);               /* Luvun väri tehosteeksi */
+  margin-top: -0.15em;                 /* Viedään lukua lähemmäs selitetekstiä */
+  font-weight: bold;                   /* Teksti lihavoitu */
 }
 
 /* -- Suitcase-komponentti ----------------------------------------------- */

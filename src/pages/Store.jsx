@@ -13,7 +13,7 @@ function Store(props) {
 
   return (
     <div className="container">
-      <Header balance={props.stats.balance}>store</Header>
+      <Header balance={props.stats.balance}>Store</Header>
       <div className="scrollbox items">
         {items}
       </div>

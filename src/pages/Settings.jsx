@@ -5,7 +5,7 @@ import Reset from '../components/Reset';
 function Settings(props) {
   return (
     <div className="container">   
-      <Header balance={props.stats.balance}>settings</Header>
+      <Header balance={props.stats.balance}>Settings</Header>
       <div className="scrollbox">
         <div className="settings">
           <h2>Travel stats</h2>
