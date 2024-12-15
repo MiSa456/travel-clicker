@@ -3,14 +3,14 @@
 /* -- Värimäärittelyt ------------------------------------------------- */
 
 :root {
-  --primary: #300b0b94;
-  --secondary: #300b0b94;
+  --primary: #300b0b;
+  --secondary: #f5a623; /* Kultainen tehosteväri */
   --neutral-lightest: #FFFFFF;
-  --neutral-light: #F3F3F3;
-  --neutral: #ddcdcdc2;
-  --neutral-dark: #999999;
-  --neutral-darker: #666666;
-  --neutral-darkest: #000000;
+  --neutral-light: #F7F7F7;
+  --neutral: #EDEDED;
+  --neutral-dark: #B8B8B8;
+  --neutral-darker: #4C4C4C;
+  --neutral-darkest: #222222;
 }
 
 /* -- yhteiset tyylimääritykset --------------------------------------- */
@@ -34,6 +34,17 @@ h1 {
     font-weight: 400;
     font-style: italic;
   }    
+}
+
+button, input[type="text"] {
+  border: 2px solid var(--neutral-darkest);
+  border-radius: 0.25em;
+  padding: 0.5em 1em;
+  font-size: 1em;
+}
+
+button:active {
+  transform: scale(0.98);
 }
 
 /* -- Responsiivinen ulkoasu ------------------------------------------ 
@@ -91,6 +102,11 @@ h1 {
   background: var(--neutral);                              /* vierityspalkin taustaväri */
 }
 
+.scrollbox::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--primary), var(--secondary));
+  border-radius: 5px;
+}
+
 /* -- Root-komponentti ------------------------------------------------ */
 
 .root {
@@ -120,6 +136,7 @@ h1 {
   align-items: center;                 /* keskitetään ikonit pystysuunnassa,
                                           NavLink-komponentin a-elementti lisää ikonin alle tyhjän tilan :( */
   justify-content: space-around;       /* sijoitetaan ikonit tasaisesti vaakasuunnassa */  
+  background-color: var(--neutral-light);
 }
 
 .menu a {
@@ -157,7 +174,11 @@ h1 {
 
 a.active .menu_badge {
   background-color: var(--primary);              /* taustaväri (aktiivinen) */
-  color: var(--neutral-darkest);                 /* tekstiväri (aktiivinen) */
+  color: var(--neutral);                 /* tekstiväri (aktiivinen) */
+}
+
+.menu a:hover {
+  opacity: 0.8;
 }
 
 /* -- Clicker-komponentti --------------------------------------------- */
@@ -226,7 +247,7 @@ a.active .menu_badge {
 }
 
 .balance_total {
-  font-size: 2.2em;                    /* Luvun tekstikoko */
+  font-size: 2em;                    /* Luvun tekstikoko */
   color: var(--primary);               /* Luvun väri tehosteeksi */
   margin-top: -0.15em;                 /* Viedään lukua lähemmäs selitetekstiä */
   font-weight: bold;                   /* Teksti lihavoitu */
@@ -313,6 +334,7 @@ a.active .menu_badge {
 
 .settings > div {
   display: flex;                                 /* käytetään flexboxia sijoittelussa */
+  flex-direction: column;
   flex-wrap: wrap;                               /* sallitaan elementtien rivittyä seuraavalle riville */
 }
 

@@ -1,4 +1,4 @@
-import suitcase from '../assets/suitcase-big.svg'
+import suitcase from '../assets/suitcase-big.svg';
 
 function Suitcase(props) {
   return (
@@ -7,5 +7,5 @@ function Suitcase(props) {
     </div>
   );
 }
-  
+
 export default Suitcase;
