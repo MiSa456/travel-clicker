@@ -14,7 +14,8 @@ function App() {
     itemstobuy: 0,
     upgrades: 0,
     collected: 0,
-    countriesVisited: 0
+    countriesVisited: 0,
+    visitedCountries: []
   };
 
   const countBuyableItems = (items, balance) => {
@@ -56,12 +57,20 @@ function App() {
         increase += newstoreitems[i].multiplier * newstoreitems[i].qty;
 
         if (i >= 4 && newstoreitems[i].qty === 1) {
-          newstats.countriesVisited++;
+          const country = newstoreitems[i].name;
+          if (!Array.isArray(newstats.visitedCountries)) {
+            newstats.visitedCountries = []; // Alustetaan, jos ei ole taulukko
+          }
+          if (!newstats.visitedCountries.includes(country)) {
+            newstats.visitedCountries.push(country); // Lisätään vain, jos ei ole jo listassa
+          }
         }
+        
       }
 
       newstats.increase = increase;
       newstats.upgrades = upgrades;
+      newstats.countriesVisited = newstats.visitedCountries.length;
       newstats.itemstobuy = countBuyableItems(newstoreitems, newstats.balance);
       setStoreitems(newstoreitems);
       setStats(newstats);

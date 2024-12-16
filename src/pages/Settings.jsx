@@ -17,6 +17,20 @@ function Settings(props) {
             <Stat title="upgrades" value={props.stats.upgrades} />
             <Stat title="countries visited" value={props.stats.countriesVisited} />
           </div>
+  
+          <div className="visited-countries">
+            <h3>Visited Countries</h3>
+            <ul>
+              {props.stats.visitedCountries.length > 0 ? (
+                props.stats.visitedCountries.map((country, index) => (
+                  <li key={index}>{country}</li>
+                ))
+              ) : (
+                <li>No countries visited yet</li>
+              )}
+            </ul>
+          </div>
+
         </div>
         <Reset resetvalue={props.stats.clicks}
                handleReset={props.handleReset} />

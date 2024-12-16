@@ -25,7 +25,7 @@ body {
   background-color: var(--neutral);             /* sovelluksen taustaväri */
   color: var(--neutral-darker);                   /* sovelluksen tekstiväri */
   font-family: 'Lato', sans-serif;  /* sovelluksen fontti */
-  font-size: 1.25em;                            /* sovelluksen tekstin koko */
+  font-size: 1.2em;                            /* sovelluksen tekstin koko */
 }
 
 h1 {
@@ -36,16 +36,6 @@ h1 {
   }    
 }
 
-button, input[type="text"] {
-  border: 2px solid var(--neutral-darkest);
-  border-radius: 0.25em;
-  padding: 0.5em 1em;
-  font-size: 1em;
-}
-
-button:active {
-  transform: scale(0.98);
-}
 
 /* -- Responsiivinen ulkoasu ------------------------------------------ 
 
@@ -202,17 +192,17 @@ a.active .menu_badge {
 }
 
 .header h1 {
-  font-size: 4.5em;                    /* pääsivun otsikon koko */
+  font-size: 3.6em;                    /* pääsivun otsikon koko */
 }
 
 .header_sub h1 {
-  font-size: 3em;                      /* alasivun otsikon koko */
+  font-size: 2.1em;                      /* alasivun otsikon koko */
 }
 
 .header_sub div {
   display: flex;                       /* käytetään flexboxia */
   align-items: center;                 /* keskitetään pystysuunnassa */
-  font-size: 1.35em;                   /* tekstin koko */
+  font-size: 1em;                   /* tekstin koko */
 }
 
 .header_sub img {
@@ -220,25 +210,39 @@ a.active .menu_badge {
   margin-left: 0.2em;                  /* vasemman reunan marginaali */
 }
 
+/* Yläosan kontti otsikolle ja ikonille */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: var(--neutral-light);      /* taustaväri (ei aktiivinen) */
+}
+
+/* Palm-kuvakkeen tyylit */
+.palm-icon {
+  width: 100px;
+  height: 100px;
+}
+
 /* -- Balance-komponentti --------------------------------------------- */
 
 .balance {
-  font-size: 1.5em;                    /* tekstin koko */ 
+  font-size: 1.1em;                    /* tekstin koko */ 
   display: flex;                       /* käytetään flexboxia */
   flex-direction: column;              /* asetetaan elementit pystysuuntaan */
 }
 
 .balance_instruction {
-  font-size: 0.8em;                    /* Fonttikoko */
   color: var(--primary);               /* Väriksi valittu pääväri */
-  text-align: center;                    /* Teksti vasempaan reunaan */
   margin-bottom: 25px;                 /* Lisää tilaa alapuolelle */
+  text-align: center;
 }
 
 .balance_details {
   display: flex;                       /* käytetään flexboxia */
+  flex-direction: column;
   justify-content: flex-end;           /* asetetaan kaikki oikeaan reunaan */
-  align-items: baseline;               /* tasataan kaikki samalla tasolla */
 }
 
 .balance_label {
@@ -247,10 +251,11 @@ a.active .menu_badge {
 }
 
 .balance_total {
-  font-size: 2em;                    /* Luvun tekstikoko */
+  font-size: 1.8em;                    /* Luvun tekstikoko */
   color: var(--primary);               /* Luvun väri tehosteeksi */
   margin-top: -0.15em;                 /* Viedään lukua lähemmäs selitetekstiä */
   font-weight: bold;                   /* Teksti lihavoitu */
+  text-align: right;                   /* Teksti oikeaan reunaan */
 }
 
 /* -- Suitcase-komponentti ----------------------------------------------- */
@@ -338,6 +343,10 @@ a.active .menu_badge {
   flex-wrap: wrap;                               /* sallitaan elementtien rivittyä seuraavalle riville */
 }
 
+.settings h3 {
+  text-align: center;
+}
+
 /* -- Stat-komponentti ------------------------------------------------ */
 
 .stat {
@@ -358,6 +367,36 @@ a.active .menu_badge {
   font-size: 2em;                                /* tilastolaatikon tekstin koko */
   font-weight: bold;                             /* tilastolaatikon tekstin paksuus */
   color: var(--primary);                         /* tilastolaatikon tekstin väri */
+}
+
+/* -- Visited Countries -komponentti -------------------------------- */
+
+.visited-countries {
+  background-color: var(--neutral-light);  /* Taustaväri sama kuin muilla tilastoilla */
+  border-radius: 0.5em;                    /* Pyöristetyt reunat */
+  padding: 0.5em 1em;                      /* Tilaa sisällön ympärille */
+  margin: 0.5em;                           /* Välit muiden elementtien kanssa */
+  min-width: 5em;                          /* Vähimmäisleveys */
+  text-align: center;                      /* Keskittää otsikon */
+}
+
+.visited-countries h3 {
+  font-size: 0.8em;                        /* Otsikon fonttikoko */
+  font-weight: normal;
+  margin-bottom: 0.5em;
+}
+
+.visited-countries ul {
+  list-style-type: disc;                   /* Pallukkalista */
+  padding-left: 1.5em;                     /* Sisennys listan aloitukseen */
+  text-align: left;                        /* Teksti vasempaan reunaan */
+}
+
+.visited-countries li {
+  font-size: 0.8em;                        /* Listan fonttikoko */
+  margin-bottom: 0.3em;                    /* Vähän väliä listan riveille */
+  color: var(--primary);                   /* Listan tekstin väri */
+  font-weight: normal;                       /* Lihavoitu teksti */
 }
 
 /* -- Reset-komponentti ----------------------------------------------- */
